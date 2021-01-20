@@ -3,6 +3,7 @@ var router = express.Router();
 var sequelize = require('../db');
 var Recipe = sequelize.import('../models/recipe');
 
+// test
 router.post("/create", (req, res) => {
     Recipe.create({
         name: req.body.recipe.name,
