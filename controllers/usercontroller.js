@@ -3,14 +3,23 @@ let User = require("../db").import("../models/user"); //here
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+
 router.post("/create", (req, res) => {
   User.create({
     email: req.body.user.email,
     password: bcrypt.hashSync(req.body.user.password, 10),
   })
-    .then((user) => {
-      res.status(200).json(user);
-    })
+    .then(
+      function createSuccess(user) {
+        let token = jwt.sign({id: user.id}, process.env.JWT, {expiresIn: 60*60*24});
+
+        res.json({
+          message: "User successfully created",
+          user: user,
+          sessionToken: token
+        })
+      }
+    )
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -22,10 +31,10 @@ router.post("/login", (req, res) => {
       }
       bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
         if (matches) {
-          const token = jwt.sign({ id: user.id }, "I am a secret", {
+          const token = jwt.sign({ id: user.id }, process.env.JWT, {
             expiresIn: 60 * 60 * 24,
           });
-          return res.status(200).json({ user, token });
+          return res.status(200).json({ message: "Successfully logged in.", user, token });
         } else {
           return res.status(401).json({ message: "Wrong password" });
         }
