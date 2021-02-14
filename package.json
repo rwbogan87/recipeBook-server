@@ -8,7 +8,7 @@
         "start": "node app.js",
         "dev": "nodemon"
     },
-    "author": "",
+    "author": "Ryan Bogan",
     "license": "ISC",
     "devDependencies": {
         "nodemon": "^1.18.4"

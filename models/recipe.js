@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       notes: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      userEmail: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     });
     return Recipe;

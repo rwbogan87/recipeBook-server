@@ -6,10 +6,10 @@ let sequelize = require("./db");
 let user = require("./controllers/usercontroller");
 let recipe = require("./controllers/recipecontroller");
 sequelize.sync();
-// sequelize.sync({force: true})
+// sequelize.sync({force: true}) 
 
-app.use(express.json());
 app.use(require("./middleware/headers"));
+app.use(express.json());
 
 app.use("/user", user);
 
