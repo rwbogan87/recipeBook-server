@@ -51,7 +51,7 @@ router.delete("/:id", auth, (req, res) => {
                 rowsUpdated: response
             })
         })
-        .catch(err => res.json({
+        .catch(err => res.status(401).json({
             message: "There was an issue deleting your recipe",
             error: err
         }))
