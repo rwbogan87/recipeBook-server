@@ -12,8 +12,8 @@ router.post("/create", (req, res) => {
     .then(
       function createSuccess(user) {
         let token = jwt.sign(
-          {id: user.id}, process.env.JWT, {expiresIn: 60*60*24}
-          );
+          { id: user.id }, process.env.JWT, { expiresIn: 60 * 60 * 24 }
+        );
 
         res.json({
           message: "User successfully created",

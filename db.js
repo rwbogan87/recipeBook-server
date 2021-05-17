@@ -7,6 +7,14 @@ const sequelize = new Sequelize(
   {
     host: "localhost",
     dialect: "postgres",
+    // heroku stuff
+
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false
+    //   }
+    // }
   }
 );
 

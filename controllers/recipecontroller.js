@@ -40,13 +40,15 @@ router.get("/getall", auth, (req, res) => {
 });
 
 router.delete("/:id", auth, (req, res) => {
+    // console.log(req)
     Recipe.destroy({
         where: {
-            id: req.params.id, email: req.user.email
+            id: req.params.id, userEmail: req.user.email
         }
     })
         .then((response) => {
-            res.status(200).json({
+            console.log(response)
+            response.status(200).json({
                 message: "Successfully removed a recipe",
                 rowsUpdated: response
             })
